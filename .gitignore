@@ -1,0 +1,38 @@
+# Unity generated files
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Mm]emoryCaptures/
+UserSettings/
+sysinfo.txt
+
+# Cache
+Assets/AssetStoreTools*
+Assets/StreamingAssets/aa/*
+*.apk
+*.aab
+*.unitypackage
+
+# Visual Studio
+.vscode/
+.vs/
+*.sln
+*.csproj
+*.pidb
+*.user
+*.userprefs
+*.unityproj
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Packages cache
+Packages/com.unity.package-manager.cache/
+
+# JetBrains Rider
+.idea/
+*.sln.iml
