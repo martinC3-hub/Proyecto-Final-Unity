@@ -3,7 +3,107 @@ guid: f03bf4b00e76452469245730cca5e248
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 1432
+    second: {fileID: 2100000, guid: 41cf17c444e177b4dac3a36bef4fec53, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Baluster
+    second: {fileID: 2100000, guid: 65a11ef7fce6c794c832c6e9e429c602, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Chair
+    second: {fileID: 2100000, guid: 86b9f147c566d7f4c84e934f34277493, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Handrail
+    second: {fileID: 2100000, guid: a37bde29dab74624784ed2407db97673, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Riser
+    second: {fileID: 2100000, guid: 712d2081be3543843921e08c7f30b415, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Riser_under
+    second: {fileID: 2100000, guid: 3bd884d98a342a349ba108e0dfc7cbe8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Stairs_under
+    second: {fileID: 2100000, guid: a9b346c88cf6b49448bd6a5875078005, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Stringer
+    second: {fileID: 2100000, guid: 27a8c2aa65147e841a9b980f81e96be3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tread
+    second: {fileID: 2100000, guid: a69a8ff731cb31848bfecf3f04a8c9dc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Upholstry
+    second: {fileID: 2100000, guid: 2132f1c022fa9884fb4dbfeb33fd3e2a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: black_plastic
+    second: {fileID: 2100000, guid: 7d56340af31501145a846037dcdf35ac, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: flltgrey
+    second: {fileID: 2100000, guid: 46df80bee0f929f409ad5f06ef9d5ea1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: grey_metal
+    second: {fileID: 2100000, guid: dc69c714a6a6e0447a8b6466957f6c86, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ground_1
+    second: {fileID: 2100000, guid: b9170aaa4e5bcff47b1c93736ad64013, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: room_47_230
+    second: {fileID: 2100000, guid: 50ef108a3d907b84a95ddce60ad912c9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: wall_1_2
+    second: {fileID: 2100000, guid: 44fedc266dd1f1d44b621d20f9ecf39b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: wall_32_164
+    second: {fileID: 2100000, guid: a80034a7cb04cf14ab6554ae8c985d52, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: wall_35_182
+    second: {fileID: 2100000, guid: 866d7f1105ad45d46ae96f3f828b11bd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: white
+    second: {fileID: 2100000, guid: 325d70abbb513e741b8763d7f3f18ebc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: yellowbrt
+    second: {fileID: 2100000, guid: f95ba22706c556b4eac5b46fddfa5fbc, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

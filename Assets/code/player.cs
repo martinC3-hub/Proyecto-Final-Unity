@@ -1,76 +1,69 @@
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class player : MonoBehaviour
 {
-    [Header("Componentes")]
-    private Rigidbody rb;
+    Rigidbody rigidbody;
+    public float rotationSpeed = 270;
     public Animator animator;
+    public float velocidad = 12;
 
-    [Header("Movimiento")]
-    public float moveSpeed = 5f;
-    public float rotationSpeed = 200f;
+    public Rigidbody rb;
+    public float jumpHeight = 3;
+    public Transform groundCheck;
+    public float groundDistance = 0.1f;
+    public LayerMask groundMask;
+    bool isGrounded;
 
-    [Header("Salto")]
-    public float jumpForce = 6f;
-    public LayerMask groundMask;   // Capa del suelo
-    public Transform groundCheck;  // Un Empty en los pies del personaje
-    public float groundCheckRadius = 0.2f;
 
-    private bool isGrounded;
-
-    private float horizontal;
-    private float vertical;
-    private bool jumpPressed;
-
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        rigidbody = GetComponent<Rigidbody>();
+
     }
 
+    // Update is called once per frame
     void Update()
     {
-        // --- Captura de Input ---
-        horizontal = Input.GetAxis("Horizontal");
-        vertical = Input.GetAxis("Vertical");
-        jumpPressed = Input.GetButtonDown("Jump"); // Por defecto: tecla Espacio
 
-        // --- Parámetros del Animator ---
-        animator.SetFloat("VelX", horizontal);
-        animator.SetFloat("VelY", vertical);
-        animator.SetBool("isGrounded", isGrounded);
+        float x = Input.GetAxis("Horizontal");
+
+        float y = Input.GetAxis("Vertical");
+
+        transform.Rotate(0, x * Time.deltaTime * rotationSpeed, 0);
+        transform.Translate(0, 0, y * Time.deltaTime * velocidad);
+
+        //Vector3 movimiento = new Vector3(x, 0, y);
+        //rigidbody.MovePosition(rigidbody.position + movimiento.normalized*0.5f);
+        animator.SetFloat("VelX", x);
+        animator.SetFloat("VelY", y);
+
+        if (Input.GetKey("f"))
+        {
+            animator.SetBool("other", false);
+            animator.Play("baile god");
+        }
+        if (Input.GetKey("c"))
+        {
+            animator.SetBool("other", false);
+            animator.Play("capoeira");
+        }
+        if (x>0 || x<0 || y>0 || y < 0)
+        {
+            animator.SetBool("other", true);
+        }
+
+        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+        if (Input.GetKey("space") && isGrounded)
+        {
+            animator.Play("jump");
+            //Invoke("Jump", 1f);
+            Invoke("Jump", 0);
+        }
+
     }
-
-    void FixedUpdate()
+    public void Jump()
     {
-        // --- Comprobar si está en el suelo ---
-        isGrounded = Physics.CheckSphere(groundCheck.position, groundCheckRadius, groundMask);
-
-        // --- Movimiento ---
-        Vector3 move = transform.forward * vertical * moveSpeed * Time.fixedDeltaTime;
-        rb.MovePosition(rb.position + move);
-
-        // --- Rotación ---
-        if (horizontal != 0)
-        {
-            Quaternion turn = Quaternion.Euler(0f, horizontal * rotationSpeed * Time.fixedDeltaTime, 0f);
-            rb.MoveRotation(rb.rotation * turn);
-        }
-
-        // --- Salto ---
-        if (jumpPressed && isGrounded)
-        {
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            animator.SetTrigger("Jump");
-        }
-    }
-
-    void OnDrawGizmosSelected()
-    {
-        // Dibuja el círculo del GroundCheck en el editor
-        if (groundCheck != null)
-        {
-            Gizmos.color = Color.green;
-            Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
-        }
+        rb.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
     }
 }
