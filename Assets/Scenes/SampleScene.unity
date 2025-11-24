@@ -2081,15 +2081,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 7945a57f4d2be5643b157ed186a81945, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -52.648705
+      value: -58
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7945a57f4d2be5643b157ed186a81945, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.0000046491623
+      value: 41.8
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7945a57f4d2be5643b157ed186a81945, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 892.55457
+      value: 904
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7945a57f4d2be5643b157ed186a81945, type: 3}
       propertyPath: m_LocalRotation.w
@@ -5977,7 +5977,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2fcd148ed7805844bb6b9a504b1e1ff3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.01
+      value: 3.8
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2fcd148ed7805844bb6b9a504b1e1ff3, type: 3}
       propertyPath: m_LocalPosition.z
@@ -14790,15 +14790,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2caf00bbc4900949b445d605ab91adf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 2067765242}
-  moveSpeed: 7
   rotationSpeed: 250
-  jumpForce: 6
+  animator: {fileID: 2067765242}
+  velocidad: 12
+  rb: {fileID: 0}
+  jumpHeight: 3
+  groundCheck: {fileID: 931048551}
+  groundDistance: 0.1
   groundMask:
     serializedVersion: 2
     m_Bits: 8
-  groundCheck: {fileID: 931048551}
-  groundCheckRadius: 0.2
+  sprintMultiplier: 1.8
+  sprintDuration: 3
+  sprintRecharge: 1
 --- !u!54 &2067765240
 Rigidbody:
   m_ObjectHideFlags: 0

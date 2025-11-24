@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class player : MonoBehaviour
 {
@@ -14,30 +14,55 @@ public class player : MonoBehaviour
     public LayerMask groundMask;
     bool isGrounded;
 
+    // ----------- SPRINT -------------
+    public float sprintMultiplier = 1.8f;   // velocidad extra al correr
+    public float sprintDuration = 3f;       // tiempo máximo corriendo
+    public float sprintRecharge = 1f;       // velocidad de recarga
+    private float sprintTimer;
+    private bool isSprinting;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
     void Start()
     {
         rigidbody = GetComponent<Rigidbody>();
-
+        sprintTimer = sprintDuration;  // comienza lleno
     }
 
-    // Update is called once per frame
     void Update()
     {
-
         float x = Input.GetAxis("Horizontal");
-
         float y = Input.GetAxis("Vertical");
 
-        transform.Rotate(0, x * Time.deltaTime * rotationSpeed, 0);
-        transform.Translate(0, 0, y * Time.deltaTime * velocidad);
+        // ------------------- SPRINT LOGIC -------------------
+        if (Input.GetKey(KeyCode.LeftShift) && y > 0.1f && sprintTimer > 0)
+        {
+            isSprinting = true;
+            sprintTimer -= Time.deltaTime;
 
-        //Vector3 movimiento = new Vector3(x, 0, y);
-        //rigidbody.MovePosition(rigidbody.position + movimiento.normalized*0.5f);
+            //animator.SetBool("Run", true);
+        }
+        else
+        {
+            isSprinting = false;
+            if (sprintTimer < sprintDuration)
+                sprintTimer += Time.deltaTime * sprintRecharge;
+
+            //animator.SetBool("Run", false);
+        }
+
+        // aplicar velocidad
+        float velocidadActual = velocidad;
+        if (isSprinting) velocidadActual *= sprintMultiplier;
+
+
+        // ------------------- MOVIMIENTO ------------------------
+        transform.Rotate(0, x * Time.deltaTime * rotationSpeed, 0);
+        transform.Translate(0, 0, y * Time.deltaTime * velocidadActual);
+
         animator.SetFloat("VelX", x);
         animator.SetFloat("VelY", y);
 
+        // ------------------- ANIMACIONES ADICIONALES ------------------
         if (Input.GetKey("f"))
         {
             animator.SetBool("other", false);
@@ -48,20 +73,20 @@ public class player : MonoBehaviour
             animator.SetBool("other", false);
             animator.Play("capoeira");
         }
-        if (x>0 || x<0 || y>0 || y < 0)
+        if (x != 0 || y != 0)
         {
             animator.SetBool("other", true);
         }
 
+        // ------------------- SALTO -----------------------
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
-        if (Input.GetKey("space") && isGrounded)
+        if (Input.GetKey(KeyCode.Space) && isGrounded)
         {
             animator.Play("jump");
-            //Invoke("Jump", 1f);
             Invoke("Jump", 0);
         }
-
     }
+
     public void Jump()
     {
         rb.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
