@@ -8,6 +8,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Scenes/derrota.unity
+    guid: 3ed3bd8c5bd504f4fac8bd669f450116
+  - enabled: 1
+    path: Assets/Scenes/victoria.unity
+    guid: e892c5e9c6f91614c8d530dae4e6c9aa
+  - enabled: 1
+    path: Assets/Scenes/Intro.unity
+    guid: 3ffe80fa53b7e5245b243315e58b349b
+  - enabled: 1
+    path: Assets/Scenes/Prueba.unity
+    guid: 5c382d8ac242fa24db00221e71b499ca
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

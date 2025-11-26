@@ -8,13 +8,15 @@ public class player : MonoBehaviour
     public float velocidad = 12;
 
     public Rigidbody rb;
+    public int damage = 1;
     public float jumpHeight = 3;
     public Transform groundCheck;
     public float groundDistance = 0.1f;
     public LayerMask groundMask;
     bool isGrounded;
+    public int valor = 6;
 
-    // ----------- SPRINT -------------
+
     public float sprintMultiplier = 1.8f;   // velocidad extra al correr
     public float sprintDuration = 3f;       // tiempo máximo corriendo
     public float sprintRecharge = 1f;       // velocidad de recarga
@@ -33,7 +35,7 @@ public class player : MonoBehaviour
         float x = Input.GetAxis("Horizontal");
         float y = Input.GetAxis("Vertical");
 
-        // ------------------- SPRINT LOGIC -------------------
+       
         if (Input.GetKey(KeyCode.LeftShift) && y > 0.1f && sprintTimer > 0)
         {
             isSprinting = true;
@@ -55,14 +57,14 @@ public class player : MonoBehaviour
         if (isSprinting) velocidadActual *= sprintMultiplier;
 
 
-        // ------------------- MOVIMIENTO ------------------------
+
         transform.Rotate(0, x * Time.deltaTime * rotationSpeed, 0);
         transform.Translate(0, 0, y * Time.deltaTime * velocidadActual);
 
         animator.SetFloat("VelX", x);
         animator.SetFloat("VelY", y);
 
-        // ------------------- ANIMACIONES ADICIONALES ------------------
+
         if (Input.GetKey("f"))
         {
             animator.SetBool("other", false);
@@ -78,7 +80,7 @@ public class player : MonoBehaviour
             animator.SetBool("other", true);
         }
 
-        // ------------------- SALTO -----------------------
+
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
         if (Input.GetKey(KeyCode.Space) && isGrounded)
         {
@@ -91,4 +93,28 @@ public class player : MonoBehaviour
     {
         rb.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
     }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Enemigo"))
+        {
+            vidas v = GetComponent<vidas>();
+            if (v != null)
+            {
+                v.vidaPlayer -= damage;
+            }
+        }
+
+        if (collision.gameObject.CompareTag("Coleccionable"))
+        {
+            GameManager.instance.AgregarPuntos(valor);
+            Destroy(collision.gameObject);
+
+            if (valor >= 7)
+            {
+                UnityEngine.SceneManagement.SceneManager.LoadScene("victoria");
+            }
+        }
+    }
+
+
 }
